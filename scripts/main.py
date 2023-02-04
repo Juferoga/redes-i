@@ -2,6 +2,7 @@
 # Materia : REDES I
 # Autores
 # Juan Felipe Rodríguez G - cod. 20181020158
+# @juferoga
 
 #       |  NOMBRE RED |  DIR. RED  |    WILDCARD   |
 LAN0  = [ "DUITAMA"    ,"85.80.0.0",     "0.0.0.127"  ] # /25 11111111.11111111.11111111.10000000 
