@@ -7,6 +7,6 @@ En este repo se guardará todo lo que se pueda de la materia.
 - CNNA - cisco Resumenes por capitulo y esas cosas de licenciatura.
 - SCRIPTS - Scripts para automatizar.
 
-## Authors
+## Authores
 
 - Juan Felipe Rodríguez @juferoga
