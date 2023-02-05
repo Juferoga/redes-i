@@ -28,34 +28,43 @@ for key in routers:
     i=1
     print(f"-----------{key}--------------")
     print(f"! S{i} LAN{i} - {key}")
+
     print("! Modo privilegiado")
     print("enable")
+
     print("! configuracion global")
     print("configure terminal")
+
     print("!contraseña de enable")
     print(f"hostname {key}")
     print("enable password 8586")
+
     print("! cofiguracion consola")
     print("line console 0")
     print("password 8586")
     print("login")
     print("exit")
+
     print("! cofiguracion vty")
     print("line vty 0 4")
     print("password 8586")
     print("login")
     print("exit")
+
     print("! configuracion banner")
     print(f"banner motd # Hola soy {key}, Att. Juan Felipe Rodriguez Galindo, 20181020158, 1001088586 #")
     print("exit")
+
     print("! Guardar configuracion")
     print("copy running-config startup-config")
+
     print("! Configuracion interfaces GigabitEthernet")
     print("interface GigabitEthernet 0/0")
     print("no shutdown ")
     print("ip address ip_lan mask_lan")
     print(f"description conectado a {key}")
     print("exit")
+
     print("! Configuracion interfaces Serial WAN 1")
     print("configure terminal")
     print("interface serial 0/3/0")
