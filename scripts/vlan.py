@@ -1,3 +1,4 @@
+import random
 # se necesita:
 # - un switch troncal => maneja el tráfico en las vlans
 # - uno o varios switches que repliquen las vlans
@@ -14,23 +15,51 @@
 #Se deben definir las vlan en función
 #de que red se van a usar
 # ejemplo
-# vlan 10 => 193.168.10.0/24
-# vlan 20 => 193.168.20.0/24
+# vlan 10 => 192.168.10.0/24
+# vlan 20 => 192.168.20.0/24
 
 
 # Creamos la vlan en todos los switches asociados
-switches=input("digita la cantidad de switches")
+switches=int(input("Digita la cantidad de switches > "))
+cantidad_pc_por_router=int(input("Digita la cantidad de pcs por switch > "))
 for iterator in range(0, switches):
-  print("enable !modo privilegiado")
-  print("configure terminal !modo privilegiado")
+  print(f"\n!Router {iterator+1}")
+  # modo privilegiado
+  print("enable")
+  # modo configuración
+  print("configure terminal")
   # creamos las vlans 
   print(f"vlan 10")
   print("name desarrollo")
   print(f"vlan 20")
   print("name produccion")
-  print("exit")
   print("!accediendo por una interfaz a una vlan determinada ")
-  print("interface f0/2")
-  print("switchport access vlan 10")
-  print("!poner las IPs en los pcs")
+  for pc_iterator in range (0,cantidad_pc_por_router):
+    print(f"\n!configurando la interface para el pc {pc_iterator+1}")
+    print(f"interface f0/{pc_iterator+2}")
+    print(f"switchport access vlan {pc_iterator+1}0")
+    print("!PARA SER TRUNK")
+    print("switchport mode trunk")
+    print(f"switchport trunk native vlan 1")
+    
+    print("!poner las IPs en los pcs")
+    print(f"!ip_example")
+    print(f"!PC{pc_iterator+1} = 192.168.{pc_iterator+1}0.{random.randint(2,254)}")
+    print("exit")
+  print("exit")
+  print("copy running-config startup-config")
+
+print("\n!Para el router principal o inicial")
+print("enable")
+print("configure terminal")
+if switches>1:print(f"interface range f0/1-{switches}")
+else:print(f"interface range f0/1")
+print("switchport mode trunk")
+print("switchport trunk native vlan 1")
+print("exit")
+print("exit")
+print("copy running-config startup-config")
+
   
+print("!Prueba haciendo ping de lado a lado :)")
+print("!ANTES COMPRUEBA LAS IPS EN LOS PC's :)")
